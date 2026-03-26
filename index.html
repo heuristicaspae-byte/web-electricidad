@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Heurística Electricidad SPA</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+  background: black;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+}
+
+/* HEADER */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 5px;
+  z-index: 1000;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.8); /* 👈 sombra elegante */
+   z-index: 1000;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+nav a {
+  color: #facc15;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+}
+nav {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+nav a:hover {
+  color: white;
+}
+
+.btn-presupuesto {
+  border: 2px solid #facc15;
+  padding: 8px 15px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+.btn-presupuesto:hover {
+  background: #facc15;
+  color: black;
+}
+
+/* HERO */
+.hero {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start; /* 👈 ESTO LO MANDA A LA IZQUIERDA */
+  padding-left: 60px;
+  background: url("assets/fondo.jpg") center/cover no-repeat;
+  gap: 15px;
+
+}
+
+.hero h1 {
+  font-size: 52px;
+  font-weight: 700;
+  color: #facc15;
+  text-shadow: 2px 2px 6px black;
+}
+.hero p {
+  margin: 10px 0;
+  color: #dc2626;
+  font-size: 20px; /* 👈 más grande */
+  font-weight: 500;
+  text-shadow: 1px 1px 1px black; /* 👈 más marcado */
+}
+
+.btn {
+  background: #facc15;
+  border: none;
+  padding: 14px 28px;
+  margin-top: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #eab308;
+  transform: scale(1.05);
+}
+
+/* CARDS */
+.servicios {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 60px;
+}
+
+.card {
+  background: #111;
+  padding: 30px;
+  width: 250px;
+  text-align: center;
+  border-radius: 15px;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 20px #facc15;
+}
+
+.card h3 {
+  color: #facc15;
+}
+
+/* LISTA */
+.servicio-item {
+  padding: 20px 60px;
+}
+
+.servicio-item h3 {
+  color: #facc15;
+}
+
+.servicio-item:hover {
+  transform: translateX(10px);
+  color: #facc15;
+}
+.btn-presupuesto {
+  border: 2px solid #facc15;
+  padding: 8px 15px;
+  border-radius: 5px;
+  color: #facc15;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btn-presupuesto:hover {
+  background: #facc15;
+  color: black;
+}
+.menu-izq {
+  display: flex;
+  gap: 20px;
+}
+* {
+  transition: all 0.3s ease;
+}
+section {
+  margin-bottom: 40px;
+}
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: aparecer 1s ease forwards;
+}
+
+@keyframes aparecer {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (max-width: 768px) {
+
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px;
+  }
+
+  .menu {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .hero {
+    padding-left: 20px;
+    height: auto;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
+
+  .servicios {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .quienes-wrapper {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .quienes-img img {
+    width: 140px;
+  }
+}
+
+/* QUIENES */
+.quienes-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  padding: 60px;
+}
+
+.quienes-img img {
+  width: 250px;
+  border-radius: 10px;
+}
+
+.contacto {
+  color: #facc15;
+  font-weight: bold;
+  font-size: 18px;
+}
+header.scrolled {
+  box-shadow: 0 6px 20px rgba(0,0,0,0.9);
+@media (max-width: 768px) {
+  .menu {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .hero {
+    padding: 20px;
+    height: auto;
+  }
+
+  .servicios {
+    flex-direction: column;
+  }
+
+  .quienes-wrapper {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+}
+/* ZONA */
+.zona {
+  text-align: center;
+  padding: 50px;
+}
+
+.zona h2 {
+  color: #facc15;
+}
+</style>
+</head>
+
+<body>
+
+<<header>
+  <div class="logo">⚡ Heurística</div>
+
+  <nav class="menu">
+    <a href="#inicio">Inicio</a>
+    <a href="#quienes">Quiénes Somos</a>
+    <a href="#" class="btn-presupuesto" onclick="abrirFormulario()">Presupuesto</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section id="inicio" class="hero fade-in">
+  <h1>Servicios Eléctricos<br>Profesionales</h1>
+  <p>Instalaciones certificadas y atención 24/7</p>
+  <p>Soluciones eléctricas seguras para hogares y empresas.</p>
+  <button class="btn" onclick="abrirWhatsApp()">Contáctame</button>
+</section>
+
+<!-- CARDS -->
+<section class="servicios fade-in">
+
+  <div class="card">
+    <h3>Instalaciones</h3>
+    <p>
+      Realizamos instalaciones eléctricas seguras para viviendas y empresas,
+      cumpliendo la normativa vigente y garantizando un sistema confiable.
+    </p>
+  </div>
+
+  <div class="card">
+    <h3>Emergencias 24/7</h3>
+    <p>
+      Atención inmediata ante fallas eléctricas, cortocircuitos y problemas urgentes
+      en instalaciones domiciliarias o comerciales.
+    </p>
+  </div>
+
+  <div class="card">
+    <h3>Mantención</h3>
+    <p>
+      Servicio de revisión y mantenimiento preventivo para asegurar el correcto
+      funcionamiento de tu sistema eléctrico.
+    </p>
+  </div>
+
+</section>
+
+<!-- LISTA -->
+<div class="servicio-item">
+  <h3>⚡ Instalaciones eléctricas</h3>
+  <p>Instalaciones seguras para viviendas y empresas cumpliendo normas técnicas.</p>
+</div>
+
+<div class="servicio-item">
+  <h3>⚡ Tableros eléctricos</h3>
+  <p>Instalación y mantenimiento de tableros para evitar sobrecargas y fallas.</p>
+</div>
+
+<div class="servicio-item">
+  <h3>⚡ Sistemas de iluminación</h3>
+  <p>Diseño e instalación de iluminación eficiente para distintos espacios.</p>
+</div>
+
+<div class="servicio-item">
+  <h3>⚡ Reparaciones eléctricas</h3>
+  <p>Solución de fallas eléctricas como cortocircuitos.</p>
+</div>
+
+<div class="servicio-item">
+  <h3>⚡ Enchufes y tomacorrientes</h3>
+  <p>Instalación y reparación de enchufes.</p>
+</div>
+
+<div class="servicio-item">
+  <h3>⚡ Servicios para empresas</h3>
+  <p>Soluciones eléctricas para locales comerciales.</p>
+</div>
+
+<!-- QUIENES -->
+<section id="quienes" class="quienes fade-in">
+  <div class="quienes-wrapper">
+
+    <div class="quienes-img">
+      <img src="assets/quienes.jpg">
+    </div>
+
+    <div>
+      <h2>Quiénes Somos</h2>
+
+      <p>
+Somos una empresa especializada en servicios eléctricos domiciliarios e industriales,
+con más de 12 años de experiencia en el rubro.
+</p>
+
+<p>
+Nos destacamos por trabajar bajo estrictos estándares de seguridad y normativas vigentes,
+garantizando soluciones confiables, eficientes y duraderas para cada uno de nuestros clientes.
+</p>
+
+<p>
+Nuestro compromiso es brindar un servicio responsable, puntual y de alta calidad,
+adaptándonos a las necesidades tanto de hogares como de empresas.
+</p>
+
+      <p class="contacto">Teléfono: +56 9 5435 8478</p>
+      <p class="contacto">Email: Heuristicaspa@gmail.com</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ZONA -->
+<section class="zona">
+  <h2>Zona de Atención</h2>
+  <p>⚡ Atendemos servicios eléctricos en Santiago y alrededores.</p>
+  <p>Instalaciones eléctricas, reparaciones, mantención y emergencias.</p>
+</section>
+<script>
+window.addEventListener("scroll", function() {
+  const header = document.querySelector("header");
+  header.classList.toggle("scrolled", window.scrollY > 50);
+});
+</script>
+
+<script>
+function abrirWhatsApp() {
+  window.open("https://wa.me/56954358478?text=Estimados%20Heurística%20Electricidad%20SPA,%20me%20gustaría%20solicitar%20información%20y%20cotización.", "_blank");
+}
+
+function abrirFormulario() {
+  window.open("https://docs.google.com/forms/d/1TcZMHNWnP1LV23Ogyo53UAMumOMhLqTjD5Efz8owKsY/viewform", "_blank");
+}
+</script>
+
+</body>
+</html>
