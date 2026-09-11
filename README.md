@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Heurística Electricidad SPA</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#000;
+    color:#fff;
+}
+
+header{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 7%;
+    background:rgba(0,0,0,.90);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(250,204,21,.2);
+    z-index:999;
+}
+
+.logo img{
+    height:60px;
+}
+
+.menu{
+    display:flex;
+    gap:30px;
+    align-items:center;
+}
+
+.menu a{
+    color:#fff;
+    text-decoration:none;
+    font-weight:500;
+    transition:.3s;
+}
+
+.menu a:hover{
+    color:#facc15;
+}
+
+.btn-menu{
+    padding:10px 22px;
+    border:2px solid #facc15;
+    border-radius:8px;
+    color:#facc15;
+    text-decoration:none;
+    font-weight:600;
+    transition:.3s;
+}
+
+.btn-menu:hover{
+    background:#facc15;
+    color:#000;
+}
+
+.hero{
+    min-height:100vh;
+    background:
+    linear-gradient(rgba(0,0,0,.60),rgba(0,0,0,.75)),
+    url("assets/logo-fondo.jpg");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    display:flex;
+    align-items:center;
+    padding:120px 8%;
+}
+
+.hero-contenido{
+    max-width:650px;
+}
+
+.subtitulo{
+    color:#facc15;
+    letter-spacing:4px;
+    margin-bottom:20px;
+}
+
+.hero h1{
+    font-size:68px;
+    line-height:72px;
+    margin-bottom:25px;
+}
+
+.hero-texto{
+    color:#ddd;
+    font-size:22px;
+    margin-bottom:40px;
+}
+
+.hero-info{
+    display:flex;
+    gap:40px;
+    flex-wrap:wrap;
+    margin-bottom:40px;
+}
+
+.dato h2{
+    color:#facc15;
+    font-size:42px;
+}
+
+.titulo-seccion{
+    text-align:center;
+    color:#facc15;
+    font-size:42px;
+    margin-bottom:15px;
+}
+
+.subtitulo-seccion{
+    text-align:center;
+    color:#ccc;
+    margin-bottom:60px;
+}
+
+.fade-in{
+    opacity:0;
+    transform:translateY(40px);
+    transition:1s;
+}
+
+.fade-in.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+/*=========================
+SERVICIOS
+=========================*/
+.servicios{
+    padding:90px 8%;
+    background:#000;
+}
+
+.contenedor-servicios{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:30px;
+}
+
+.card-servicio{
+    background:#111;
+    border-radius:15px;
+    overflow:hidden;
+    border:1px solid #222;
+    transition:.35s;
+}
+
+.card-servicio:hover{
+    transform:translateY(-8px);
+    box-shadow:0 0 25px rgba(250,204,21,.40);
+}
+
+.card-servicio img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.card-servicio h3{
+    color:#facc15;
+    padding:20px 20px 10px;
+}
+
+.card-servicio p{
+    color:#d7d7d7;
+    padding:0 20px 25px;
+    line-height:1.7;
+}
+
+/*=========================
+VENTAJAS
+=========================*/
+
+.ventajas{
+    padding:90px 8%;
+    background:#090909;
+}
+
+.contenedor-ventajas{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.ventaja{
+    background:#151515;
+    padding:35px;
+    border-radius:15px;
+    text-align:center;
+    border:1px solid #252525;
+    transition:.3s;
+}
+
+.ventaja:hover{
+    border-color:#facc15;
+    transform:translateY(-8px);
+}
+
+.icono{
+    font-size:48px;
+    margin-bottom:20px;
+}
+
+.ventaja h3{
+    color:#facc15;
+    margin-bottom:15px;
+}
+
+.ventaja p{
+    color:#d6d6d6;
+    line-height:1.7;
+}
+
+/*=========================
+PROYECTOS
+=========================*/
+
+.proyectos{
+    padding:90px 8%;
+    background:#000;
+}
+
+.grid-galeria{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:25px;
+}
+
+.proyecto{
+    background:#111;
+    border-radius:15px;
+    overflow:hidden;
+    transition:.35s;
+}
+
+.proyecto:hover{
+    transform:translateY(-8px);
+    box-shadow:0 0 20px rgba(250,204,21,.40);
+}
+
+.proyecto img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+}
+
+.proyecto h3{
+    padding:18px;
+    text-align:center;
+    color:#facc15;
+}
+/*=========================
+QUIÉNES SOMOS
+=========================*/
+
+.quienes{
+    padding:90px 8%;
+    background:#090909;
+}
+
+.quienes-contenedor{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:center;
+}
+
+.quienes-imagen img{
+    width:100%;
+    border-radius:15px;
+}
+
+.quienes-texto p{
+    color:#d6d6d6;
+    line-height:1.8;
+    margin-bottom:20px;
+}
+
+/*=========================
+ZONA
+=========================*/
+
+.zona{
+    padding:80px 8%;
+    background:#000;
+    text-align:center;
+}
+
+.zona p{
+    color:#d6d6d6;
+    font-size:20px;
+    margin-top:15px;
+}
+
+/*=========================
+CONTACTO
+=========================*/
+
+.contacto{
+    padding:90px 8%;
+    background:#101010;
+}
+
+.contacto-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+    margin-top:40px;
+}
+
+.contacto-grid div{
+    background:#181818;
+    padding:30px;
+    border-radius:15px;
+    text-align:center;
+}
+
+.contacto-grid h3{
+    color:#facc15;
+    margin-bottom:15px;
+}
+
+.contacto-grid p{
+    color:#ddd;
+    line-height:1.7;
+}
+
+/*=========================
+FOOTER
+=========================*/
+
+.footer{
+    background:#050505;
+    padding:60px 20px;
+    text-align:center;
+    border-top:2px solid #facc15;
+}
+
+.footer h2{
+    color:#facc15;
+    margin-bottom:20px;
+}
+
+.footer p{
+    color:#ccc;
+    line-height:1.8;
+}
+
+.footer-contacto{
+    margin:25px 0;
+}
+
+.copyright{
+    margin-top:30px;
+    font-size:14px;
+    color:#888;
+}
+
+/*=========================
+WHATSAPP
+=========================*/
+
+.whatsapp{
+    position:fixed;
+    bottom:25px;
+    right:25px;
+    width:65px;
+    height:65px;
+    background:#25D366;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    font-size:34px;
+    box-shadow:0 0 20px rgba(0,0,0,.4);
+    z-index:9999;
+}
+
+.whatsapp:hover{
+    transform:scale(1.1);
+}
+
+/*=========================
+RESPONSIVE
+=========================*/
+
+@media(max-width:768px){
+
+    .quienes-contenedor{
+        grid-template-columns:1fr;
+    }
+
+    .contacto-grid{
+        grid-template-columns:1fr;
+    }
+
+    .grid-galeria{
+        grid-template-columns:1fr;
+    }
+
+    .contenedor-servicios{
+        grid-template-columns:1fr;
+    }
+}
+
+</style>
+
+<body>
+<header>
+
+    <div class="logo">
+        <img src="assets/logo.png" alt="Heurística Electricidad SPA">
+    </div>
+
+    <nav class="menu">
+        <a href="#inicio">Inicio</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#quienes">Nosotros</a>
+        <a href="#contacto">Contacto</a>
+
+        <a href="#" class="btn-menu" onclick="abrirFormulario()">
+            Presupuesto
+        </a>
+    </nav>
+
+</header>
+
+<!-- HERO -->
+
+<section id="inicio" class="hero">
+
+    <div class="hero-contenido">
+
+        <div class="subtitulo">
+            HEURÍSTICA ELECTRICIDAD SPA
+        </div>
+
+        <h1>
+            Soluciones<br>
+            Eléctricas
+        </h1>
+
+        <p class="hero-texto">
+            Instalaciones eléctricas residenciales, comerciales e industriales con más de 12 años de experiencia.
+        </p>
+
+        <div class="hero-info">
+
+            <div class="dato">
+                <h2>+12</h2>
+                <span>Años de experiencia</span>
+            </div>
+
+            <div class="dato">
+                <h2>24/7</h2>
+                <span>Emergencias</span>
+            </div>
+
+            <div class="dato">
+                <h2>100%</h2>
+                <span>Compromiso</span>
+            </div>
+
+        </div>
+
+        <div class="hero-botones">
+
+            <a href="#" class="btn-principal" onclick="abrirWhatsApp()">
+                Solicitar Presupuesto
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- SERVICIOS -->
+
+<section id="servicios" class="servicios fade-in">
+
+    <h2 class="titulo-seccion">Nuestros Servicios</h2>
+
+    <p class="subtitulo-seccion">
+        Soluciones eléctricas para hogares, empresas e industrias.
+    </p>
+
+    <div class="contenedor-servicios">
+
+        <div class="card-servicio">
+            <img src="assets/instalacion.jpg" alt="">
+            <h3>Instalaciones Eléctricas</h3>
+            <p>Instalaciones domiciliarias, comerciales e industriales.</p>
+        </div>
+
+        <div class="card-servicio">
+            <img src="assets/tablero.jpg" alt="">
+            <h3>Tableros Eléctricos</h3>
+            <p>Fabricación, ampliación y mantención de tableros eléctricos.</p>
+        </div>
+
+        <div class="card-servicio">
+            <img src="assets/led.jpg" alt="">
+            <h3>Iluminación LED</h3>
+            <p>Diseño e instalación de iluminación eficiente.</p>
+        </div>
+
+        <div class="card-servicio">
+            <img src="assets/mantencion.jpg" alt="">
+            <h3>Mantención</h3>
+            <p>Mantención preventiva y correctiva.</p>
+        </div>
+
+        <div class="card-servicio">
+            <img src="assets/empresa.jpg" alt="">
+            <h3>Empresas</h3>
+            <p>Servicios para oficinas, comercios e industrias.</p>
+        </div>
+
+        <div class="card-servicio">
+            <img src="assets/emergencia.jpg" alt="">
+            <h3>Emergencias 24/7</h3>
+            <p>Atención rápida para fallas eléctricas.</p>
+        </div>
+
+    </div>
+
+</section>
+<!-- =========================
+¿POR QUÉ ELEGIRNOS?
+========================= -->
+
+<section class="ventajas fade-in">
+
+    <h2 class="titulo-seccion">
+        ¿Por qué elegir Heurística?
+    </h2>
+
+    <div class="contenedor-ventajas">
+
+        <div class="ventaja">
+            <div class="icono">⚡</div>
+            <h3>Experiencia</h3>
+            <p>Más de 12 años entregando soluciones eléctricas de calidad.</p>
+        </div>
+
+        <div class="ventaja">
+            <div class="icono">🛡️</div>
+            <h3>Seguridad</h3>
+            <p>Trabajos realizados bajo normativa y con materiales certificados.</p>
+        </div>
+
+        <div class="ventaja">
+            <div class="icono">🚨</div>
+            <h3>Emergencias 24/7</h3>
+            <p>Respuesta rápida para resolver fallas eléctricas.</p>
+        </div>
+
+        <div class="ventaja">
+            <div class="icono">🤝</div>
+            <h3>Compromiso</h3>
+            <p>Atención personalizada y cumplimiento de plazos.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+PROYECTOS
+========================= -->
+
+<section id="proyectos" class="proyectos fade-in">
+
+    <h2 class="titulo-seccion">
+        Proyectos Realizados
+    </h2>
+
+    <p class="subtitulo-seccion">
+        Algunos trabajos realizados por Heurística Electricidad SPA.
+    </p>
+
+    <div class="grid-galeria">
+
+        <div class="proyecto">
+            <img src="assets/proyecto1.jpg" alt="Proyecto 1">
+            <h3>Instalación Domiciliaria</h3>
+        </div>
+
+        <div class="proyecto">
+            <img src="assets/proyecto2.jpg" alt="Proyecto 2">
+            <h3>Tablero Eléctrico</h3>
+        </div>
+
+        <div class="proyecto">
+            <img src="assets/proyecto3.jpg" alt="Proyecto 3">
+            <h3>Iluminación LED</h3>
+        </div>
+
+        
+
+        <div class="proyecto">
+            <img src="assets/proyecto5.jpg" alt="Proyecto 5">
+            <h3>Mantención Eléctrica</h3>
+        </div>
+
+        <div class="proyecto">
+            <img src="assets/proyecto6.jpg" alt="Proyecto 6">
+            <h3>Proyecto Industrial</h3>
+        </div>
+
+    </div>
+
+</section>
+<!-- =========================
+QUIÉNES SOMOS
+========================= -->
+
+<section id="quienes" class="quienes fade-in">
+
+    <div class="quienes-contenedor">
+
+        <div class="quienes-imagen">
+            <img src="assets/quienes.jpg" alt="Heurística Electricidad SPA">
+        </div>
+
+        <div class="quienes-texto">
+
+            <h2 class="titulo-seccion" style="text-align:left;">
+                Quiénes Somos
+            </h2>
+
+            <p>
+                Somos una empresa especializada en instalaciones eléctricas
+                domiciliarias, comerciales e industriales.
+            </p>
+
+            <p>
+                Contamos con más de 12 años de experiencia desarrollando proyectos
+                seguros, eficientes y cumpliendo la normativa vigente.
+            </p>
+
+            <p>
+                Nuestro compromiso es entregar un servicio de calidad,
+                puntualidad y atención personalizada para cada cliente.
+            </p>
+
+            <a href="#" class="btn-principal" onclick="abrirWhatsApp()">
+                Solicitar Cotización
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+ZONA DE ATENCIÓN
+========================= -->
+
+<section class="zona fade-in">
+
+    <h2 class="titulo-seccion">
+        Zona de Atención
+    </h2>
+
+    <p>
+        Atendemos Santiago y comunas cercanas.
+    </p>
+
+    <p>
+        Servicios para hogares, empresas, oficinas y locales comerciales.
+    </p>
+
+</section>
+
+<!-- =========================
+CONTACTO
+========================= -->
+
+<section id="contacto" class="contacto fade-in">
+
+    <h2 class="titulo-seccion">
+        Contáctanos
+    </h2>
+
+    <div class="contacto-grid">
+
+        <div>
+            <h3>📞 Teléfono</h3>
+            <p>+56 9 5435 8478</p>
+        </div>
+
+        <div>
+            <h3>✉ Correo</h3>
+            <p>heuristicaspa@gmail.com</p>
+        </div>
+
+        <div>
+            <h3>🕒 Horario</h3>
+            <p>Lunes a Domingo<br>24 Horas</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+FOOTER
+========================= -->
+
+<footer class="footer">
+
+    <h2>⚡ Heurística Electricidad SPA</h2>
+
+    <p>
+        Instalaciones eléctricas domiciliarias, comerciales e industriales.
+    </p>
+
+    <p>
+        Santiago · Chile
+    </p>
+
+    <div class="footer-contacto">
+        <p>📞 +56 9 5435 8478</p>
+        <p>✉ heuristicaspa@gmail.com</p>
+    </div>
+
+    <p class="copyright">
+        © 2026 Heurística Electricidad SPA · Todos los derechos reservados.
+    </p>
+
+</footer>
+
+<!-- BOTÓN WHATSAPP -->
+
+<a href="https://wa.me/56954358478?text=Estimados%20Heurística%20Electricidad%20SPA,%20me%20gustaría%20solicitar%20información%20y%20cotización."
+class="whatsapp"
+target="_blank">
+💬
+</a>
+
+<script>
+
+function abrirWhatsApp(){
+window.open(
+"https://wa.me/56954358478?text=Estimados%20Heurística%20Electricidad%20SPA,%20me%20gustaría%20solicitar%20información%20y%20cotización.",
+"_blank");
+}
+
+function abrirFormulario(){
+window.open(
+"https://docs.google.com/forms/d/1TcZMHNWnP1LV23Ogyo53UAMumOMhLqTjD5Efz8owKsY/viewform",
+"_blank");
+}
+
+const elementos=document.querySelectorAll(".fade-in");
+
+const observer=new IntersectionObserver((entries)=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add("visible");
+}
+});
+});
+
+elementos.forEach(el=>observer.observe(el));
+
+</script>
+
+</body>
+</html>
