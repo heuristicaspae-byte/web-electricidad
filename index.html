@@ -168,6 +168,8 @@ SERVICIOS
     overflow:hidden;
     border:1px solid #222;
     transition:.35s;
+    display:flex;
+    flex-direction:column;
 }
 
 .card-servicio:hover{
@@ -188,8 +190,46 @@ SERVICIOS
 
 .card-servicio p{
     color:#d7d7d7;
-    padding:0 20px 25px;
+    padding:0 20px 15px;
     line-height:1.7;
+}
+
+/* Estilos de información desplegable */
+.btn-detalle{
+    background:transparent;
+    color:#facc15;
+    border:1px solid #facc15;
+    padding:10px 18px;
+    margin:0 20px 20px;
+    border-radius:6px;
+    cursor:pointer;
+    font-weight:500;
+    transition:all 0.3s ease;
+    align-self:flex-start;
+}
+
+.btn-detalle:hover{
+    background:#facc15;
+    color:#000;
+}
+
+.detalle-servicio{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height 0.4s ease-out, padding 0.4s ease;
+    background:#0a0a0a;
+    border-top:1px dashed #222;
+}
+
+.card-servicio.activo .detalle-servicio{
+    max-height:300px;
+    padding:20px;
+}
+
+.detalle-servicio p{
+    padding:0;
+    font-size:14px;
+    color:#bbb;
 }
 
 /*=========================
@@ -449,6 +489,7 @@ RESPONSIVE
 }
 
 </style>
+</head>
 
 <body>
 <header>
@@ -534,39 +575,63 @@ RESPONSIVE
     <div class="contenedor-servicios">
 
         <div class="card-servicio">
-            <img src="assets/instalacion.jpg" alt="">
+            <img src="assets/instalacion.jpg" alt="Instalaciones Eléctricas">
             <h3>Instalaciones Eléctricas</h3>
             <p>Instalaciones domiciliarias, comerciales e industriales.</p>
+            <button class="btn-detalle" onclick="toggleDetalle(this)">Ver más información</button>
+            <div class="detalle-servicio">
+                <p>Ejecutamos proyectos eléctricos completos desde cero y regularizaciones bajo la normativa SEC. Incluye alambrado, montajes, canalización, tableros y certificación técnica para residencias, oficinas y galpones industriales.</p>
+            </div>
         </div>
 
         <div class="card-servicio">
-            <img src="assets/tablero.jpg" alt="">
+            <img src="assets/tablero.jpg" alt="Tableros Eléctricos">
             <h3>Tableros Eléctricos</h3>
             <p>Fabricación, ampliación y mantención de tableros eléctricos.</p>
+            <button class="btn-detalle" onclick="toggleDetalle(this)">Ver más información</button>
+            <div class="detalle-servicio">
+                <p>Armado, equilibrio de fases, etiquetado y actualización de tableros de protección (TDA/TDF). Instalación de protecciones automáticas y diferenciales para garantizar la máxima seguridad electromecánica.</p>
+            </div>
         </div>
 
         <div class="card-servicio">
-            <img src="assets/led.jpg" alt="">
+            <img src="assets/led.jpg" alt="Iluminación LED">
             <h3>Iluminación LED</h3>
             <p>Diseño e instalación de iluminación eficiente.</p>
+            <button class="btn-detalle" onclick="toggleDetalle(this)">Ver más información</button>
+            <div class="detalle-servicio">
+                <p>Asesoría en ahorro energético, reemplazo de luminarias tradicionales por tecnología LED de alta eficiencia, proyectos de iluminación arquitectónica, comercial e industrial de interior y exterior.</p>
+            </div>
         </div>
 
         <div class="card-servicio">
-            <img src="assets/mantencion.jpg" alt="">
+            <img src="assets/mantencion.jpg" alt="Mantención">
             <h3>Mantención</h3>
             <p>Mantención preventiva y correctiva.</p>
+            <button class="btn-detalle" onclick="toggleDetalle(this)">Ver más información</button>
+            <div class="detalle-servicio">
+                <p>Revisión periódica de redes eléctricas, medición de tierras de protección, reapriete de conexiones, termografía técnica y reemplazo de componentes desgastados para prevenir fallas o incendios.</p>
+            </div>
         </div>
 
         <div class="card-servicio">
-            <img src="assets/empresa.jpg" alt="">
+            <img src="assets/empresa.jpg" alt="Empresas">
             <h3>Empresas</h3>
             <p>Servicios para oficinas, comercios e industrias.</p>
+            <button class="btn-detalle" onclick="toggleDetalle(this)">Ver más información</button>
+            <div class="detalle-servicio">
+                <p>Soluciones a medida para locales comerciales, faenas e industrias. Planificación de cargas pesadas, redes de trifásica, respaldo de energía y mantenimientos de continuidad operativa.</p>
+            </div>
         </div>
 
         <div class="card-servicio">
-            <img src="assets/emergencia.jpg" alt="">
+            <img src="assets/emergencia.jpg" alt="Emergencias 24/7">
             <h3>Emergencias 24/7</h3>
             <p>Atención rápida para fallas eléctricas.</p>
+            <button class="btn-detalle" onclick="toggleDetalle(this)">Ver más información</button>
+            <div class="detalle-servicio">
+                <p>Atención inmediata ante cortocircuitos, caídas del sistema, sobrecargas y problemas imprevistos en instalaciones residenciales y comerciales a cualquier hora del día.</p>
+            </div>
         </div>
 
     </div>
@@ -799,6 +864,16 @@ function abrirFormulario(){
 window.open(
 "https://docs.google.com/forms/d/1TcZMHNWnP1LV23Ogyo53UAMumOMhLqTjD5Efz8owKsY/viewform",
 "_blank");
+}
+
+function toggleDetalle(boton){
+    const card = boton.parentElement;
+    card.classList.toggle("activo");
+    if(card.classList.contains("activo")){
+        boton.innerText = "Ocultar información";
+    } else {
+        boton.innerText = "Ver más información";
+    }
 }
 
 const elementos=document.querySelectorAll(".fade-in");
